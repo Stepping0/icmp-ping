@@ -1,0 +1,75 @@
+/* Arka plan stilleri */
+.background-main {
+    margin: 0;
+    padding: 0;
+    background-image: url("https://apod.nasa.gov/apod/image/2412/ISS002-E-7377_1024c.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex; /* Flexbox ile merkeze alma */
+    justify-content: center; /* Yatayda ortala */
+    align-items: center; /* Dikeyde ortala */
+}
+
+/* Form kapsayıcı stili */
+.form-container {
+    background-color: rgba(255, 255, 255, 0.2); /* Şeffaf beyaz arka plan */
+    border-radius: 15px; /* Yuvarlatılmış köşeler */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* Hafif gölge */
+    padding: 20px; /* İçerik boşluğu */
+    width: 90%; /* Mobil uyumluluk için genişlik */
+    max-width: 700px; /* Maksimum genişlik */
+    text-align: center; /* Metni merkezde hizala */
+}
+
+/* Başlık stili */
+.text-light {
+    color: #ffffff; /* Beyaz metin */
+}
+
+/* Form elemanları */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Alanlar arasında boşluk */
+    width: 100%;
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    width: 100%; /* Form genişliğine uyum sağla */
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px;
+    background-color: #61dafb;
+    color: #282c34;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #21a1f1;
+}
+
+/* Sonuç kutusu */
+.output-box {
+    background-color: rgba(0, 0, 0, 0.8); /* Şeffaf siyah */
+    padding: 15px;
+    border-radius: 5px;
+    color: #61dafb; /* Açık mavi metin */
+    font-family: monospace;
+    font-size: 14px;
+    overflow-y: auto; /* Uzun içerikler için kaydırma */
+    max-height: 200px; /* Maksimum yükseklik */
+}

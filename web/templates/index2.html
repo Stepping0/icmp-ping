@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ping Interface</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body class="background-main">
+    <div class="form-container">
+        <h1 class="text-light">Ping Arayüzü</h1>
+        <form id="pingForm">
+            <label for="server_ip">Server IP:</label>
+            <input 
+                type="text" 
+                id="server_ip" 
+                name="server_ip" 
+                placeholder="Örn: 192.168.1.1" 
+                required
+            >
+            <label for="dest_ip">Destination IP:</label>
+            <input 
+                type="text" 
+                id="dest_ip" 
+                name="dest_ip" 
+                placeholder="Örn: 8.8.8.8" 
+                required
+            >
+            <button type="submit">Başlat</button>
+        </form>
+        <h2 class="text-light">Sonuçlar:</h2>
+        <pre id="output" class="output-box">Henüz bir işlem yapılmadı.</pre>
+    </div>
+
+    <script>
+        document.getElementById("pingForm").onsubmit = async function (e) {
+            e.preventDefault();
+
+            // Form verilerini al ve sonucu temizle
+            const formData = new FormData(this);
+            document.getElementById("output").innerText = "Ping işlemi başlatılıyor...";
+
+            try {
+                // Sunucuya POST isteği gönder
+                const response = await fetch("/start_ping", {
+                    method: "POST",
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error("Ping işlemi sırasında bir hata oluştu.");
+                }
+
+                const data = await response.json();
+                document.getElementById("output").innerText = 
+                    data.client_output + "\n" + data.server_log;
+
+            } catch (error) {
+                document.getElementById("output").innerText = 
+                    "Hata: " + error.message;
+            }
+        };
+    </script>
+</body>
+</html>
